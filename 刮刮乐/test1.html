@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+            #main{
+                background: url(1.jpg);
+                width: 580px;
+                height: 733px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <canvas id="canvas" width="580px"
+                height=" 733px"></canvas>
+        </div>
+
+   
+    <script type="text/javascript">
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+
+        ctx.beginPath();
+        ctx.fillStyle="#ccc";
+        ctx.fillRect(0,0,580,733);
+        ctx.fill();
+        ctx.closePath();
+        //新增加图形 交集透明
+        ctx.globalCompositeOperation="destination-out";
+        //点击函数
+        canvas.addEventListener("touchstart", function(e){
+            console.log(1);
+            canvas.addEventListener("touchmove",function(e){
+                //移动生成圆
+                ctx.beginPath();
+                ctx.fillStyle="black";
+                
+                ctx.arc(e.targetTouches[0].clientX,e.targetTouches[0].clientY,20,0,Math.PI*2);
+                ctx.fill();
+                ctx.closePath();
+            })
+       
+        })
+
+
+
+    </script>
+    </body>
+</html>
